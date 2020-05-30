@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="jumbotron">
+    <h1>{{ title }}</h1>
+    <div class="float-right">
+        <a href="{{ url_for("cart", id=sponsorship.id) }}">
+            <button type="submit" class="btn btn-primary">Back to Cart</button>
+        </a>
+    </div>
+    <div class="media-body">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <fieldset>
+                <legend>Shipping Address</legend>
+                <div class="form-group">
+                    {{ form.street_1.label() }}
+                    {% if form.street_1.errors %}
+                        {{ form.street_1(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.street_1.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.street_1(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.city.label() }}
+                    {% if form.city.errors %}
+                        {{ form.city(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.city.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.city(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.state.label() }}
+                    {% if form.state.errors %}
+                        {{ form.state(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.state.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.state(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.zip_code.label() }}
+                    {% if form.zip_code.errors %}
+                        {{ form.zip_code(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.zip_code.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.zip_code(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div>
+                <h2>Payment</h2>
+                <p class="text-right">
+                    Current Rewards Balance: {{ sponsorship.points }} points
+                </p>
+            </div>
+            <div>
+                <h2>Order Summary</h2>
+                <p class="text-right">
+                    Items: {{ subtotal }} points<br>
+                    Rewards: -{{ rewards }} points
+                </p>
+                <hr class="my-4">
+                {% if total > 0 %}
+                <p class="text-right text-danger">Order Total: {{ total }} points</p>
+                {% else %}
+                <p class="text-right text-success">Order Total: {{ total }} points</p>
+                <p class="text-right">Rewards Balance After Purchase: {{ left }} points</p>
+                <button type="submit" class="btn btn-primary">Place Your Order</button>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

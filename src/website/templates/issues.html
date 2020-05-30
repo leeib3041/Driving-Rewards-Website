@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>{{ title }}</h1>
+    <div class="mb-3">
+        <form action="{{ url_for("issues", sort_by=sort_by, sort_reverse=sort_reverse) }}" method="post" class="form-inline my-2 my-lg-0">
+            {{ form.search(class="form-control mr-sm-2", placeholder="Search") }}
+            {{ form.submit(class="btn btn-secondary my-2 my-sm-0") }}
+        </form>
+    </div>
+    {{ table }}
+    {% include "pagination.html" %}
+{% endblock content %}

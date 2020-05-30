@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>{{ title }}</h1>
+    <div class="jumbotron">
+        <h3 class="text-primary">Sales Report</h3>
+        <p>Total Sales: ${{total_sales}}</p>
+        <p>Admin Fee: ${{admin_fee}}</p>
+    </div>
+{% endblock content %}

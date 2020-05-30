@@ -1,0 +1,21 @@
+<form method="POST" action="">
+    {{ category_form.hidden_tag() }}
+    <fieldset>
+        <legend>Choose Category</legend>
+        <div class="form-group">
+            {{ category_form.category.label() }}
+            {% if category_form.category.errors %}
+                {{ category_form.category(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in category_form.category.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ category_form.category(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ category_form.submit(class="btn btn-primary") }}
+        </div>
+</form>

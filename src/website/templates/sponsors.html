@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="float-left">
+    <h1>{{ title }}</h1>
+    </div>
+    {% if not current_user.is_authenticated %}
+    <div class="float-right">
+        <a href="{{ url_for("sponsor_application") }}">
+            <button type="submit" class="btn btn-primary">Apply to be a Sponsor</button>
+        </a>
+    </div>
+    {% endif %}
+    {{ table }}
+    {% include "pagination.html" %}
+{% endblock content %}

@@ -1,0 +1,37 @@
+<div class="jumbotron">
+    <div class="media-body">
+        <img class="rounded-circle account-img" src="{{ picture }}">
+        <h2>{{ user }}</h2>
+        <p>{{ user.user_type }}</p>
+        <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+        {% if current_user == user or current_user.user_type == UserTypes.ADMIN %}
+            {% if user.user_type == UserTypes.DRIVER and user.active_sponsors() %}
+                <hr class="my-4">
+                <h3>Sponsors</h3>
+                <ul class="list-group">
+                {% for sponsorship in user.sponsorships %}
+                    {% if sponsorship.active %}
+                        <a href="{{ url_for("sponsor", id=sponsorship.sponsor.id) }}">
+                            <li class="list-group-item list-group-item-action text-primary">
+                                {{ sponsorship.sponsor }}
+                                <span class="badge badge-light badge-pill ml-2">{{ sponsorship.points }} points </span>
+                            </li>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endif %}
+        {% if user.user_type == UserTypes.STORE_MANAGER and user.employer %}
+            <hr class="my-4">
+            <h3>Employer</h3>
+            <ul class="list-group">
+                <a href="{{ url_for("sponsor", id=user.employer.id) }}">
+                    <li class="list-group-item list-group-item-action">
+                        {{ user.employer }}
+                    </li>
+                </a>
+            </ul>
+        {% endif %}
+    </div>
+</div>

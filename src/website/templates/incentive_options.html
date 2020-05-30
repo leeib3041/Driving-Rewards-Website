@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="column">
+        <div class="card">
+          <img class="card-img-top" src="static/images/original-grumpy-cat-meme.jpg">
+          <div class="card-body">
+            <h5 class="card-title" style="font-size:35px;">Select by Items!</h5>
+            <br></br>
+            <p class="card-text">Browse through eBay's store and individually select items that you would like for your drivers to select from!</p>
+            <a href="{{ url_for("incentive_item") }}" class="btn btn-primary">Select Items</a>
+          </div>
+        </div>
+    </div>
+    <div class="column">
+        <div class="card">
+          <img class="card-img-top" src="static/images/Category.png" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title" style="font-size:35px;">Select by Category!</h5>
+            <p class="card-text">Simply select a category from eBay's wide range of categories. Give you drivers more extensive list of options with just one click!</p>
+            <a href="{{ url_for("incentive_category") }}" class="btn btn-primary">Choose Category</a>
+          </div>
+        </div>
+    </div>
+    <div class="column">
+        <div class="card">
+          <img class="card-img-top" src="static/images/ebay-icon-vector-3.jpg.png" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title" style="font-size:35px;">Customize Your Selection!</h5>
+            <p class="card-text">Want to let our algorithm do all the work for you? Just select from list of filters you would like to have and let us do all the work for you!</p>
+            <a href="{{ url_for("incentive_custom") }}" class="btn btn-primary">Customize</a>
+          </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

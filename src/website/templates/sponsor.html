@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        {% include "sponsor_info.html" %}
+        {% if current_user.user_type == UserTypes.DRIVER and sponsor not in current_user.all_sponsors() %}
+            <form action="{{ url_for("apply_sponsor", id=sponsor.id) }}" method="post">
+                <button type="submit" class="btn btn-primary">Apply for Sponsorship</button>
+            </form>
+        {% endif %}
+        {% if current_user in sponsor.managers or current_user.user_type == UserTypes.ADMIN %}
+            <div class="jumbotron">
+                <form method="POST" action="" enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
+                    <fieldset>
+                        <legend>Update Information</legend>
+                        <div class="form-group">
+                            {{ form.name.label() }}
+                            {% if form.name.errors %}
+                                {{ form.name(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.name.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.name(class="form-control form-control-lg") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.picture.label() }}
+                            {{ form.picture(class="form-control-file") }}
+                            {% if form.picture.errors %}
+                                {% for error in form.picture.errors %}
+                                <span class="text-danger">{{ error }}</span><br></br>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.submit(class="btn btn-primary") }}
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        {% endif %}
+        {% if current_user.user_type == UserTypes.ADMIN %}
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirm_delete">Remove Sponsor</button>
+        {% endif %}
+    </div>
+    <div class="modal fade" id="confirm_delete" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Remove Sponsor</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to remove {{ sponsor }} ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <form action="{{ url_for("remove_sponsor", id=sponsor.id, next=url_for("manage_sponsors")) }}" method="post">
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,10 @@
+<div class="jumbotron">
+    <div class="media-body">
+            <h2>Ticket #{{ support_ticket.id }}</h2>
+            <h4><a href="{{ url_for("profile", id=support_ticket.user_id) }}">{{ support_ticket.user }}</a></h4>
+            <p>{{ support_ticket.user.user_type }}</p>
+            <p>Email: <a class="card-link" href="mailto:{{ support_ticket.user.email }}">{{ support_ticket.user.email }}</a></p>
+            <p>Title: {{ support_ticket.title }}</p>
+            <p>Description: {{ support_ticket.description }}</p>
+    </div>
+</div>

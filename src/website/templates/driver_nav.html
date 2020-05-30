@@ -1,0 +1,27 @@
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown">
+        Rewards
+    </a>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="{{ url_for("catalogs") }}">Catalogs</a>
+        <a class="dropdown-item" href="{{ url_for("orders") }}">Orders</a>
+    </div>
+</li>
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown">
+        Sponsorships
+    </a>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="{{ url_for("sponsors") }}">Apply</a>
+        <a class="dropdown-item" href="{{ url_for("sponsorships") }}">Current</a>
+    </div>
+</li>
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown">
+        Support
+    </a>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="{{ url_for("report_issue") }}">Report Issue</a>
+        <a class="dropdown-item" href="{{ url_for("issues") }}">My Issues</a>
+    </div>
+</li>

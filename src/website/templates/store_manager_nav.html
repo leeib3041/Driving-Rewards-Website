@@ -1,0 +1,36 @@
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown">
+        Drivers
+    </a>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="{{ url_for("approve_drivers") }}">Approve Drivers</a>
+        <a class="dropdown-item" href="{{ url_for("sponsorships") }}">Manage Drivers</a>
+    </div>
+</li>
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown">
+        Sponsor
+    </a>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="{{ url_for("sponsor", id=current_user.employer_id) }}">Edit Sponsor Profile</a>
+    </div>
+</li>
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown">
+        Rewards
+    </a>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="{{ url_for("carts") }}">Carts</a>
+        <a class="dropdown-item" href="{{ url_for("manage_catalog") }}">Catalog</a>
+        <a class="dropdown-item" href="{{ url_for("orders") }}">Orders</a>
+    </div>
+</li>
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown">
+        Support
+    </a>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="{{ url_for("report_issue") }}">Report Issue</a>
+        <a class="dropdown-item" href="{{ url_for("issues") }}">My Issues</a>
+    </div>
+</li>

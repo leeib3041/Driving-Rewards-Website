@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="jumbotron">
+    <h1>{{ title }}</h1>
+    <div class="float-right">
+        <a href="{{ url_for("catalog", id=sponsorship.id) }}">
+            <button type="submit" class="btn btn-primary">Back to Catalog</button>
+        </a>
+    </div>
+    <div class="media-body">
+        {{table}}
+        <div class="float-right">
+            <p>Subtotal: {{subtotal}} points</p>
+        </div>
+        <a href="{{ url_for("checkout", id=sponsorship.id) }}">
+            <button type="submit" class="btn btn-primary">Proceed to Checkout</button>
+        </a>
+    </div>
+</div>
+{% endblock content %}

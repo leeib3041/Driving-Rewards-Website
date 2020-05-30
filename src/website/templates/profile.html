@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        {% include "account_info.html" %}
+        {% if current_user.user_type == UserTypes.ADMIN %}
+            <a href="{{ url_for("account", id=user.id) }}">
+                <button type="submit" class="btn btn-secondary">Edit Account</button>
+            </a>
+        {% endif %}
+    </div>
+{% endblock content %}

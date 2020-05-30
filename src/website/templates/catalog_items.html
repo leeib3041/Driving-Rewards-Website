@@ -1,0 +1,25 @@
+<div class="card mb-3" style="max-width: 1500px;">
+  {% for item in item_list %}
+      <div class="card" style="max-height: 250px;">
+          <div class="row no-gutters">
+              <div class="col-md-3">
+                  <img src="{{ item.galleryURL }}" class="card-img-top" alt="..." height="250">
+              </div>
+              <div class="col-md-9">
+                  <div class="card-body">
+                      <h5 class="card-title"><b>{{ item.title }}</h5>
+                      <span>Cost</span><span class="text-muted float-right">{{ item.sellingStatus.currentPrice.value }}</span><br>
+                      <span>Shipping</span><span class="text-muted float-right">{{ item.shippingInfo.shippingType }} Shipping!</span><br>
+                      <span>Category</span><span class="text-muted float-right">{{ item.primaryCategory.categoryName }}</span>
+                      {% if current_user.user_type == UserTypes.DRIVER %}
+                      <a href="{{ url_for("add_to_cart", sponsorship=sponsorship.id, item=item.itemId) }}">
+                        <button type="submit" class="btn btn-primary
+                            float-right m-4">Add to Cart</button>
+                    </a>
+                      {% endif %}
+                  </div>
+              </div>
+          </div>
+      </div>
+  {% endfor %}
+</div>

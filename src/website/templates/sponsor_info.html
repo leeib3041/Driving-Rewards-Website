@@ -1,0 +1,34 @@
+<div class="jumbotron">
+    <div class="media-body">
+        <img class="rounded-circle account-img" src="{{ picture }}">
+        <h2>{{ sponsor }}</h2>
+        {% if current_user.employer == sponsor or current_user.user_type == UserTypes.ADMIN %}
+            {% if sponsor.active_drivers() %}
+                <hr class="my-4">
+                <h3>Drivers</h3>
+                <ul class="list-group">
+                {% for driver in sponsor.active_drivers() %}
+                    <a href="{{ url_for("profile", id=driver.id) }}">
+                        <li class="list-group-item list-group-item-action secondary text-primary">
+                            {{ driver }}
+                        </li>
+                    </a>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endif %}
+        {% if sponsor.managers %}
+            <hr class="my-4">
+            <h3>Store Managers</h3>
+            <ul class="list-group">
+            {% for manager in sponsor.managers %}
+                <a href="{{ url_for("profile", id=manager.id) }}">
+                    <li class="list-group-item list-group-item-action secondary text-primary">
+                        {{ manager }}
+                    </li>
+                </a>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</div>

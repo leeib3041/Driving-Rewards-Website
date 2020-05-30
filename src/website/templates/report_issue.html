@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="jumbotron">
+    <h1>FAQ & Support</h1>
+    <p>Support Email: <a href="mailto:support@truckforce.com">support@truckforce.com</a></p>
+    <p>Support Phone Number: (206) 555-0100<br/></p>
+    <p>Cancellation Policy:<br/></p>
+    <p>All redemptions have a 48 hour grace period starting right after the order is placed, where the user can cancel the order at no penalty.<br/></p>
+</div>
+<div class="jumbotron">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset>
+            <legend>Submit a Support Ticket</legend>
+            <div class="form-group">
+                {{ form.first_name.label() }}
+                {{ form.first_name(class="form-control form-control-lg", readonly="") }}
+            </div>
+            <div class="form-group">
+                {{ form.last_name.label() }}
+                {{ form.last_name(class="form-control form-control-lg", readonly="") }}
+            </div>
+            <div class="form-group">
+                {{ form.email.label() }}
+                {{ form.email(class="form-control form-control-lg", readonly="") }}
+            </div>
+            <div class="form-group">
+                {{ form.title.label() }}
+                {% if form.title.errors %}
+                    {{ form.title(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.title.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.title(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.description.label() }}
+                {% if form.description.errors %}
+                    {{ form.description(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.description.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.description(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+</div>
+{% endblock content %}
