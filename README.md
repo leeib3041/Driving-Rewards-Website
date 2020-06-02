@@ -1,2 +1,2 @@
-To run website locally:
+To run website locally, in SRC dir:
 `python3 run.py`
